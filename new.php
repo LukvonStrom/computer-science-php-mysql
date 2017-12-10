@@ -2,7 +2,7 @@
 $easteregg = false;
 require('./functions.php');
 
-if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenraum"]) && isset($_POST["klassenbezeichner"]) && isset($_POST["klassenid"])){
+if (isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenraum"]) && isset($_POST["klassenbezeichner"]) && isset($_POST["klassenid"])) {
     neuerLehrer($_POST["name"], $_POST["vorname"], $_POST["klassenraum"], $_POST["klassenbezeichner"], $_POST["klassenid"]);
     header("Location: ./index.php");
     die();
@@ -20,13 +20,15 @@ if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenrau
     <title>INFO-Testseite</title>
 
     <!-- Schriftarten importieren -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
     <!-- meine coolen CSS Dateien die die Seite richtig hübsch machen reinladen. -->
 
     <?php echo x("style"); ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha256-j+P6EZJVrbXgwSR5Mx+eCS6FvP9Wq27MBRC/ogVriY0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+          integrity="sha256-j+P6EZJVrbXgwSR5Mx+eCS6FvP9Wq27MBRC/ogVriY0=" crossorigin="anonymous"/>
 
     <link href="./app.css" rel="stylesheet">
 </head>
@@ -36,7 +38,8 @@ if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenrau
     <div class="container">
         <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -61,31 +64,35 @@ if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenrau
 
 <div class="container" style="margin-top: 15em">
     <div class="row">
-        <div class="<?php echo  x("animation"); ?> col-md-10 col-md-offset-1" >
+        <div class="<?php echo x("animation"); ?> col-md-10 col-md-offset-1">
             <div class="panel panel-primary">
                 <!-- Titel des Panels -->
-                <div class="panel-heading"><center>Neuer Lehrer</center></div>
+                <div class="panel-heading">
+                    <center>Neuer Lehrer</center>
+                </div>
                 <div class="panel-body" style="align: center">
                     <!-- Textinhalt des Panels. -->
                     <form class="form-horizontal" method="post" action="./new.php">
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Vorname</label>
-                                <div class="col-md-4">
-                                    <input id="vorname" name="vorname" type="text" placeholder="Lukas" class="form-control input-md" required="">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Vorname</label>
+                            <div class="col-md-4">
+                                <input id="vorname" name="vorname" type="text" placeholder="Lukas"
+                                       class="form-control input-md" required="">
 
-                                </div>
                             </div>
+                        </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="name">Nachname</label>
-                                <div class="col-md-4">
-                                    <input id="name" name="name" type="text" placeholder="Fruntke" class="form-control input-md" required="">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="name">Nachname</label>
+                            <div class="col-md-4">
+                                <input id="name" name="name" type="text" placeholder="Fruntke"
+                                       class="form-control input-md" required="">
 
-                                </div>
                             </div>
+                        </div>
 
                         <!-- Text input-->
                         <div class="form-group">
@@ -110,7 +117,8 @@ if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenrau
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="name">Klassenbezeichner</label>
                             <div class="col-md-4">
-                                <input id="klassenbezeichner" name="klassenbezeichner" type="text" placeholder="g" class="form-control input-md" required="">
+                                <input id="klassenbezeichner" name="klassenbezeichner" type="text" placeholder="g"
+                                       class="form-control input-md" required="">
 
                             </div>
                         </div>
@@ -120,7 +128,8 @@ if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenrau
                             <label class="col-md-4 control-label" for="name">Klassenraum</label>
                             <div class="col-md-4">
                                 <label class="radio-inline" for="klassenraum-0">
-                                    <input type="radio" name="klassenraum" id="klassenraum-0" value="010" checked="checked">
+                                    <input type="radio" name="klassenraum" id="klassenraum-0" value="010"
+                                           checked="checked">
                                     010
                                 </label>
                                 <label class="radio-inline" for="klassenraum-1">
@@ -157,7 +166,7 @@ if(isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenrau
     </div>
 </div>
 
-<?php echo  x("script"); ?>
+<?php echo x("script"); ?>
 <!-- JavaScripts importieren, auch für uns vollkommen egal.-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

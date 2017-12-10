@@ -1,7 +1,6 @@
 <?php
 
 
-
 $host = "localhost";
 
 // Bei XAMPP ist der Nutzer root derjenige mit den höchsten Rechten, er ist standardmäßig ohne Passwort.
@@ -13,24 +12,26 @@ $database = "schule_rutesheim";
 
 $db = mysqli_connect($host, $user, $password, $database);
 
-if(mysqli_connect_errno()){
-    echo "Problem bei der Verbindung zur Datenbank". mysqli_connect_error();
+if (mysqli_connect_errno()) {
+    echo "Problem bei der Verbindung zur Datenbank" . mysqli_connect_error();
     exit();
 }
 
 
-function sucheAlleDaten() {
+function sucheAlleDaten()
+{
     $abfrage = "SELECT lehrer.LNR, lehrer.Lvorname, lehrer.Lname, klasse.ID_Kla, klasse.KlBez, klasse.KlRaum FROM lehrer INNER JOIN klasse ON lehrer.LNR=klasse.KlLehrer ORDER BY lehrer.LNR ASC";
-    
+
     $antwort = mysqli_query($GLOBALS["db"], $abfrage);
 
     $ergebnis = mysqli_fetch_all($antwort, MYSQLI_ASSOC);
 
     return $ergebnis;
-    
+
 }
 
-function sucheLehrer($id){
+function sucheLehrer($id)
+{
     $abfrage = "SELECT `Lname` FROM `lehrer` WHERE `LNR` = ?";
 
     $statement = mysqli_prepare($GLOBALS["db"], $abfrage);
@@ -48,9 +49,10 @@ function sucheLehrer($id){
     return $name[0]["Lname"];
 }
 
-function neuerLehrer($nachname, $vorname, $klassenraum, $klassenbezeichner, $klassenid) {
+function neuerLehrer($nachname, $vorname, $klassenraum, $klassenbezeichner, $klassenid)
+{
 
-    $sql="INSERT INTO `lehrer` (`Lname`, `Lvorname`) VALUES (?, ?);";
+    $sql = "INSERT INTO `lehrer` (`Lname`, `Lvorname`) VALUES (?, ?);";
 
     $statement = mysqli_prepare($GLOBALS["db"], $sql);
 
@@ -64,14 +66,15 @@ function neuerLehrer($nachname, $vorname, $klassenraum, $klassenbezeichner, $kla
 
 }
 
-function neueKlasse($klassenraum, $klassenbezeichner, $klassenid){
+function neueKlasse($klassenraum, $klassenbezeichner, $klassenid)
+{
 
 
-    $sql="INSERT INTO `klasse` (`ID_Kla`, `KlBez`, `KlLehrer`, `KlRaum`) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO `klasse` (`ID_Kla`, `KlBez`, `KlLehrer`, `KlRaum`) VALUES (?, ?, ?, ?);";
 
     $statement = mysqli_prepare($GLOBALS["db"], $sql);
 
-    $lehrerid= mysqli_insert_id($GLOBALS["db"]);
+    $lehrerid = mysqli_insert_id($GLOBALS["db"]);
 
     mysqli_stmt_bind_param($statement, 'isis', $klassenid, $klassenbezeichner, $lehrerid, $klassenraum);
 
@@ -80,8 +83,9 @@ function neueKlasse($klassenraum, $klassenbezeichner, $klassenid){
     mysqli_stmt_close($statement);
 }
 
-function klasseUndLehrerlöschen($lehrerid){
-    $sql="DELETE FROM `klasse` WHERE `klasse`.`KlLehrer` = ?;";
+function klasseUndLehrerlöschen($lehrerid)
+{
+    $sql = "DELETE FROM `klasse` WHERE `klasse`.`KlLehrer` = ?;";
 
     $statement = mysqli_prepare($GLOBALS["db"], $sql);
 
@@ -94,21 +98,23 @@ function klasseUndLehrerlöschen($lehrerid){
     lehrerlöschen($lehrerid);
 }
 
-function lehrerlöschen($lehrerid){
-$sql="DELETE FROM `lehrer` WHERE `lehrer`.`LNR` = ?;";
+function lehrerlöschen($lehrerid)
+{
+    $sql = "DELETE FROM `lehrer` WHERE `lehrer`.`LNR` = ?;";
 
-$statement = mysqli_prepare($GLOBALS["db"], $sql);
+    $statement = mysqli_prepare($GLOBALS["db"], $sql);
 
-mysqli_stmt_bind_param($statement, 'i', $lehrerid);
+    mysqli_stmt_bind_param($statement, 'i', $lehrerid);
 
-mysqli_stmt_execute($statement);
+    mysqli_stmt_execute($statement);
 
-mysqli_stmt_close($statement);
+    mysqli_stmt_close($statement);
 }
 
-function LehrerNachNameanpassen($id, $newname){
+function LehrerNachNameanpassen($id, $newname)
+{
 
-    $sql="UPDATE `lehrer` SET Lname=? WHERE LNR = ?";
+    $sql = "UPDATE `lehrer` SET Lname=? WHERE LNR = ?";
 
     $statement = mysqli_prepare($GLOBALS["db"], $sql);
 
@@ -121,11 +127,32 @@ function LehrerNachNameanpassen($id, $newname){
 }
 
 
-
-
-
-
-
 $easteregg = false;
-$time = 5*60*1000;
-function x($value){switch($value){case"style":if($GLOBALS["easteregg"]){$stylesheets=["flatly","darkly","paper","cosmo","superhero"];return'<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/'.$stylesheets[array_rand($stylesheets,1)].'/bootstrap.min.css" rel="stylesheet">';}else{return'<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet">';}break;case"script":if($GLOBALS["easteregg"]){return'<script type="text/javascript">setTimeout(function(){window.location.reload(1);}, $GLOBALS["time"]);</script>';}else{return'';}break;case"animation":if($GLOBALS["easteregg"]){return"animated jello";}else{return"";}break;}}
+$time = 5 * 60 * 1000;
+function x($value)
+{
+    switch ($value) {
+        case"style":
+            if ($GLOBALS["easteregg"]) {
+                $stylesheets = ["flatly", "darkly", "paper", "cosmo", "superhero"];
+                return '<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/' . $stylesheets[array_rand($stylesheets, 1)] . '/bootstrap.min.css" rel="stylesheet">';
+            } else {
+                return '<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet">';
+            }
+            break;
+        case"script":
+            if ($GLOBALS["easteregg"]) {
+                return '<script type="text/javascript">setTimeout(function(){window.location.reload(1);}, $GLOBALS["time"]);</script>';
+            } else {
+                return '';
+            }
+            break;
+        case"animation":
+            if ($GLOBALS["easteregg"]) {
+                return "animated jello";
+            } else {
+                return "";
+            }
+            break;
+    }
+}
