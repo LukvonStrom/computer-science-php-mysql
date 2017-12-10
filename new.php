@@ -1,5 +1,4 @@
 <?php
-$easteregg = false;
 require('./functions.php');
 
 if (isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenraum"]) && isset($_POST["klassenbezeichner"]) && isset($_POST["klassenid"])) {

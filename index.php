@@ -1,5 +1,4 @@
 <?php
-$easteregg = false;
 require('./functions.php');
 
 

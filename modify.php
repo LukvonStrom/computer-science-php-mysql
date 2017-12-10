@@ -1,5 +1,4 @@
 <?php
-$easteregg = false;
 require('./functions.php');
 if (!isset($_GET["id"])) {
     exit("Keine ID");
