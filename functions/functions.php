@@ -52,9 +52,9 @@ function sucheLehrer($id)
 function neuerLehrer($nachname, $vorname, $klassenraum, $klassenbezeichner, $klassenid)
 {
 
-    $sql = "INSERT INTO `lehrer` (`Lname`, `Lvorname`) VALUES (?, ?);";
+    $abfrage = "INSERT INTO `lehrer` (`Lname`, `Lvorname`) VALUES (?, ?);";
 
-    $statement = mysqli_prepare($GLOBALS["db"], $sql);
+    $statement = mysqli_prepare($GLOBALS["db"], $abfrage);
 
     mysqli_stmt_bind_param($statement, 'ss', $nachname, $vorname);
 
@@ -70,9 +70,9 @@ function neueKlasse($klassenraum, $klassenbezeichner, $klassenid)
 {
 
 
-    $sql = "INSERT INTO `klasse` (`ID_Kla`, `KlBez`, `KlLehrer`, `KlRaum`) VALUES (?, ?, ?, ?);";
+    $abfrage = "INSERT INTO `klasse` (`ID_Kla`, `KlBez`, `KlLehrer`, `KlRaum`) VALUES (?, ?, ?, ?);";
 
-    $statement = mysqli_prepare($GLOBALS["db"], $sql);
+    $statement = mysqli_prepare($GLOBALS["db"], $abfrage);
 
     $lehrerid = mysqli_insert_id($GLOBALS["db"]);
 
@@ -83,11 +83,11 @@ function neueKlasse($klassenraum, $klassenbezeichner, $klassenid)
     mysqli_stmt_close($statement);
 }
 
-function klasseUndLehrerlöschen($lehrerid)
+function klasseUndLehrerloeschen($lehrerid)
 {
-    $sql = "DELETE FROM `klasse` WHERE `klasse`.`KlLehrer` = ?;";
+    $abfrage = "DELETE FROM `klasse` WHERE `klasse`.`KlLehrer` = ?;";
 
-    $statement = mysqli_prepare($GLOBALS["db"], $sql);
+    $statement = mysqli_prepare($GLOBALS["db"], $abfrage);
 
     mysqli_stmt_bind_param($statement, 'i', $lehrerid);
 
@@ -95,14 +95,14 @@ function klasseUndLehrerlöschen($lehrerid)
 
     mysqli_stmt_close($statement);
 
-    lehrerlöschen($lehrerid);
+    lehrerloeschen($lehrerid);
 }
 
-function lehrerlöschen($lehrerid)
+function lehrerloeschen($lehrerid)
 {
-    $sql = "DELETE FROM `lehrer` WHERE `lehrer`.`LNR` = ?;";
+    $abfrage = "DELETE FROM `lehrer` WHERE `lehrer`.`LNR` = ?;";
 
-    $statement = mysqli_prepare($GLOBALS["db"], $sql);
+    $statement = mysqli_prepare($GLOBALS["db"], $abfrage);
 
     mysqli_stmt_bind_param($statement, 'i', $lehrerid);
 
@@ -114,9 +114,9 @@ function lehrerlöschen($lehrerid)
 function LehrerNachNameanpassen($id, $newname)
 {
 
-    $sql = "UPDATE `lehrer` SET Lname=? WHERE LNR = ?";
+    $abfrage = "UPDATE `lehrer` SET Lname=? WHERE LNR = ?";
 
-    $statement = mysqli_prepare($GLOBALS["db"], $sql);
+    $statement = mysqli_prepare($GLOBALS["db"], $abfrage);
 
     mysqli_stmt_bind_param($statement, 'si', $newname, $id);
 

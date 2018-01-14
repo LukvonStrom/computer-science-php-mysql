@@ -1,5 +1,5 @@
 <?php
-require('./functions.php');
+require('./functions/functions.php');
 if (!isset($_GET["id"])) {
     exit("Keine ID");
 }

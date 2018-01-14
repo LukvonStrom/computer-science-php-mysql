@@ -1,5 +1,5 @@
 <?php
-require('./functions.php');
+require('./functions/functions.php');
 
 if (isset($_POST["name"]) && isset($_POST["vorname"]) && isset($_POST["klassenraum"]) && isset($_POST["klassenbezeichner"]) && isset($_POST["klassenid"])) {
     neuerLehrer($_POST["name"], $_POST["vorname"], $_POST["klassenraum"], $_POST["klassenbezeichner"], $_POST["klassenid"]);

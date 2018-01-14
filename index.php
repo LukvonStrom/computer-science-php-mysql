@@ -1,9 +1,9 @@
 <?php
-require('./functions.php');
+require('./functions/functions.php');
 
 
 if (isset($_GET["deleteid"])) {
-    klasseUndLehrerlöschen($_GET["deleteid"]);
+    klasseUndLehrerloeschen($_GET["deleteid"]);
 }
 ?>
 <!DOCTYPE html>
