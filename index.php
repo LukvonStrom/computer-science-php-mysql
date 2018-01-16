@@ -1,7 +1,8 @@
 <?php
+// Mit require laden wir den Inhalt einer anderen Datei komplett in unser aktuelles Skript.
 require('./functions/functions.php');
 
-
+// isset() ist eine Helferfunktion die überprüft, ob dem Parameter ein Wert zugewiesen wurde.
 if (isset($_GET["deleteid"])) {
     klasseUndLehrerloeschen($_GET["deleteid"]);
 }
@@ -85,6 +86,12 @@ if (isset($_GET["deleteid"])) {
                         <?php
                         $data = sucheAlleDaten();
 
+                        // foreach() iteriert über ein Array und gibt uns die Möglichkeit die Variablen die wir in der Schleife
+                        // nutzen wollen anzugeben.
+                        // Die Ausgabe der Datenbank ist die folgende:
+                        // Array ( [0] => Array ( [LNR] => 1 [Lvorname] => Lukas [Lname] => Fruntke [ID_Kla] => 12 [KlBez] => c [KlRaum] => 014 ) )
+
+                        // das macht es nötig, in zwei foreach Schleifen über die Daten zu iterieren.
                         foreach ($data as $zeilennr => $daten) {
                             echo '<tr>';
                             foreach ($daten as $eintrag => $wert) {

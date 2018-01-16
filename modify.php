@@ -76,6 +76,7 @@ if (isset($_POST["name"])) {
                 </div>
                 <div class="panel-body" style="align: center">
                     <!-- Textinhalt des Panels. -->
+                    <!-- Ein normales HTML Form, dessen action Attribut auf die entsprechende Id geändert wird -->
                     <form class="form-horizontal" method="post" action="./modify.php?id=<?php echo $id; ?>">
                         <!-- Text input-->
                         <div class="form-group">
@@ -83,6 +84,7 @@ if (isset($_POST["name"])) {
                             <div class="col-md-4">
                                 <input id="name" name="name" type="text" class="form-control input-md" required=""
                                        value="<?php echo sucheLehrer($id); ?>">
+                                <!-- Als voreingetragenen Wert setzen wir den Wert aus der Datenbank ein -->
 
                             </div>
                         </div>
