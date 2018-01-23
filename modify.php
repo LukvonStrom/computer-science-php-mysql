@@ -78,7 +78,7 @@ if (isset($_POST["name"])) {
                     <!-- Textinhalt des Panels. -->
                     <!-- Ein normales HTML Form, dessen action Attribut auf die entsprechende Id geändert wird -->
                     <form class="form-horizontal" method="post" action="./modify.php?id=<?php echo $id; ?>">
-                        <!-- Text input-->
+                        <!-- Text input Feld, nutzt es als Vorlage um die Seite hier zu erweitern-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="name">Nachname</label>
                             <div class="col-md-4">

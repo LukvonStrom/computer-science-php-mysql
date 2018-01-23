@@ -90,15 +90,17 @@ if (isset($_GET["deleteid"])) {
                         // nutzen wollen anzugeben.
                         // Die Ausgabe der Datenbank ist die folgende:
                         // Array ( [0] => Array ( [LNR] => 1 [Lvorname] => Lukas [Lname] => Fruntke [ID_Kla] => 12 [KlBez] => c [KlRaum] => 014 ) )
+                        //
 
                         // das macht es nötig, in zwei foreach Schleifen über die Daten zu iterieren.
                         foreach ($data as $zeilennr => $daten) {
                             echo '<tr>';
                             foreach ($daten as $eintrag => $wert) {
-
                                 echo '<td>' . $wert . '</td>';
                             }
-                            echo '<td><a href="./modify.php?id=' . $daten['LNR'] . '"><i class="fa fa-pencil fa-fw" style="color: #000000" aria-hidden="true"></i></a> <a href="./index.php?deleteid=' . $daten['LNR'] . '" style="color: #000000"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a></td>';
+                            // Wir übergeben die Lehrernummber als GET Parameter       Das HTML Element i ist für uns nicht relevant, es fügt hier Icons ein.
+                            echo '<td><a href="./modify.php?id=' . $daten['LNR'] . '"><i class="fa fa-pencil fa-fw" style="color: #000000" aria-hidden="true"></i></a> 
+                                 <a href="./index.php?deleteid=' . $daten['LNR'] . '" style="color: #000000"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a></td>';
                             echo '</tr>';
 
                         }
